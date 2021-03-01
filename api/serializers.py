@@ -3,10 +3,23 @@ from rest_framework import serializers
 from .models import Book, Author
 
 
-class BookSerializer(serializers.ModelSerializer):
+class ForAdminBookSerializer(serializers.ModelSerializer):
     writers = Author.objects.all()
     url = serializers.HyperlinkedIdentityField(read_only=True, view_name='api:book-detail')
     writer = serializers.HyperlinkedRelatedField(view_name='api:author-detail', queryset=writers)
+    code = serializers.ReadOnlyField()
+
+    class Meta:
+        model = Book
+        fields = ['url', 'id', 'code', 'title', 'content', 'writer', 'category']
+        extra_kwargs = {
+            'content': {'write_only': True}
+        }
+
+
+class ForUserBookSerializer(serializers.ModelSerializer):
+    url = serializers.HyperlinkedIdentityField(read_only=True, view_name='api:book-detail')
+    writer = serializers.HyperlinkedRelatedField(view_name='api:author-detail', read_only=True)
     code = serializers.ReadOnlyField()
 
     class Meta:
