@@ -26,7 +26,7 @@ class ForUserBookSerializer(serializers.ModelSerializer):
         model = Book
         fields = ['url', 'id', 'code', 'title', 'content', 'writer', 'category']
         extra_kwargs = {
-            'content': {'write_only': True}
+            'content': {'write_only': True},
         }
 
 
@@ -44,4 +44,4 @@ class AuthorSerializer(serializers.Serializer):
 
     class Meta:
         model = Author
-        fields = ['id', 'user', 'user.first_name', 'books']
+        fields = ['id', 'user']
