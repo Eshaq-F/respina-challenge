@@ -28,7 +28,5 @@ Go on to found how to ****setup and run**** the project:
 **Use "django" as framework , "Rest Framework" to serialize API and "Postgresql" as a powerful database**.
 
 <br />
-<br />
-
 
 + Hope to work with the best group Respina Company...
